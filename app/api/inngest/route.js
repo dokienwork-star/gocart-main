@@ -2,7 +2,9 @@ import { serve } from "inngest/next";
 import { inngest } from "@/inngest/client";
 import * as functions from "@/inngest/functions";
 
-export const { GET, POST, PUT } = serve({
+export const dynamic = 'force-dynamic';
+
+const handler = serve({
     client: inngest,
     functions: [
         functions.syncUserCreation,
@@ -10,3 +12,7 @@ export const { GET, POST, PUT } = serve({
         functions.syncUserDelete,
     ],
 });
+
+export const GET = handler;
+export const POST = handler;
+export const PUT = handler;
